@@ -6,160 +6,350 @@
 	},
 	"item": [
 		{
-			"name": "getReading",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/dailyReading/2021/04/02",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dailyReading",
-						"2021",
-						"04",
-						"02"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "deleteReading",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/dailyReading?readingID=6069864d6ecae3068241f770",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dailyReading"
-					],
-					"query": [
-						{
-							"key": "readingID",
-							"value": "6069864d6ecae3068241f770"
+			"name": "localhost",
+			"item": [
+				{
+					"name": "getReading",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dailyReading/2021/04/02",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dailyReading",
+								"2021",
+								"04",
+								"02"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "updateReading",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"dailyReading\": \"test data 222\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"02\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/dailyReading?readingID=6069864d6ecae3068241f770",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dailyReading"
-					],
-					"query": [
-						{
-							"key": "readingID",
-							"value": "6069864d6ecae3068241f770"
+				{
+					"name": "getReadings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dailyReadings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dailyReadings"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getReadings",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/dailyReadings",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dailyReadings"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "postDailyReading",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"dailyReading\": \"test data 2\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"04\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/dailyReadings",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dailyReadings"
-					]
+				{
+					"name": "postDailyReading",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dailyReading\": \"test data 2\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"04\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/dailyReading",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dailyReading"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postDailyReadings",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 2\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        },\n        {\n        \"dailyReading\": \"test data 3\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/dailyReadings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dailyReadings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateReading",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dailyReading\": \"test data 222\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/dailyReading?readingID=6069864d6ecae3068241f770",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dailyReading"
+							],
+							"query": [
+								{
+									"key": "readingID",
+									"value": "6069864d6ecae3068241f770"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReading",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dailyReading?readingID=6069864d6ecae3068241f770",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dailyReading"
+							],
+							"query": [
+								{
+									"key": "readingID",
+									"value": "6069864d6ecae3068241f770"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "postDailyReadings",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 2\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        },\n        {\n        \"dailyReading\": \"test data 3\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        }\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "AWS",
+			"item": [
+				{
+					"name": "getReading_AWS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading/2021/04/02",
+							"protocol": "http",
+							"host": [
+								"ec2-3-16-163-87",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReading",
+								"2021",
+								"04",
+								"02"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/dailyReadings",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"dailyReadings"
-					]
+				{
+					"name": "getReadings_AWS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReadings",
+							"protocol": "http",
+							"host": [
+								"ec2-3-16-163-87",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReadings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postDailyReading_AWS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dailyReading\": \"test data\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"04\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading",
+							"protocol": "http",
+							"host": [
+								"ec2-3-16-163-87",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReading"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postDailyReadings_AWS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 2\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        },\n        {\n        \"dailyReading\": \"test data 3\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReadings",
+							"protocol": "http",
+							"host": [
+								"ec2-3-16-163-87",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReadings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateReading_AWS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dailyReading\": \"test data 222\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading?readingID=6069b9999c56bc0715aaf01a",
+							"protocol": "http",
+							"host": [
+								"ec2-3-16-163-87",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReading"
+							],
+							"query": [
+								{
+									"key": "readingID",
+									"value": "6069b9999c56bc0715aaf01a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReading_AWS",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading?readingID=6069b9999c56bc0715aaf01a",
+							"protocol": "http",
+							"host": [
+								"ec2-3-16-163-87",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReading"
+							],
+							"query": [
+								{
+									"key": "readingID",
+									"value": "6069b9999c56bc0715aaf01a"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
