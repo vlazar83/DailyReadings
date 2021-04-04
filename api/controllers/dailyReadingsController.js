@@ -61,7 +61,7 @@ exports.update_a_reading = function(req, res) {
 exports.delete_a_reading = function(req, res) {
 
   dailyReadings.remove({
-    _id: req.params.taskId
+    _id: req.query.readingID
   }, function(err, task) {
     if (err)
       res.send(err);
