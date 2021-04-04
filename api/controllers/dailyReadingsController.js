@@ -20,12 +20,21 @@ exports.get_a_reading = function(req, res) {
 };
 
   exports.create_bulk_reading = function(req, res) {
-    var new_reading = new dailyReadings(req.body);
-    new_reading.save(function(err, task) {
+    var new_readings = Array.from(req.body.readings);
+
+    let readings = [];
+    new_readings.forEach((reading) => readings.push(new dailyReadings(reading)));
+
+    dailyReadings.insertMany(readings);
+    res.json("Success");
+
+    /*
+    readings.forEach(reading => reading.save(function(err, task) {
       if (err)
         res.send(err);
       res.json(task);
-    });
+    }));
+    */
   };
 
 /*
