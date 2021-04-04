@@ -25,8 +25,12 @@ exports.get_a_reading = function(req, res) {
     let readings = [];
     new_readings.forEach((reading) => readings.push(new dailyReadings(reading)));
 
-    dailyReadings.insertMany(readings);
-    res.json("Success");
+    dailyReadings.insertMany(readings,function(err, task) {
+      if (err)
+        res.send(err);
+      res.json(task);
+    });
+    //res.json("Success");
 
     /*
     readings.forEach(reading => reading.save(function(err, task) {
