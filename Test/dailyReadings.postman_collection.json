@@ -14,12 +14,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/dailyReading/2021/04/02",
+							"raw": "http://localhost:50000/dailyReading/2021/04/02",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "50000",
 							"path": [
 								"dailyReading",
 								"2021",
@@ -36,12 +36,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/dailyReadings",
+							"raw": "http://localhost:50000/dailyReadings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "50000",
 							"path": [
 								"dailyReadings"
 							]
@@ -64,12 +64,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/dailyReading",
+							"raw": "http://localhost:50000/dailyReading",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "50000",
 							"path": [
 								"dailyReading"
 							]
@@ -92,12 +92,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/dailyReadings",
+							"raw": "http://localhost:50000/dailyReadings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "50000",
 							"path": [
 								"dailyReadings"
 							]
@@ -120,12 +120,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/dailyReading?readingID=6069864d6ecae3068241f770",
+							"raw": "http://localhost:50000/dailyReading?readingID=6069864d6ecae3068241f770",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "50000",
 							"path": [
 								"dailyReading"
 							],
@@ -145,12 +145,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/dailyReading?readingID=6069864d6ecae3068241f770",
+							"raw": "http://localhost:50000/dailyReading?readingID=6069864d6ecae3068241f770",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "50000",
 							"path": [
 								"dailyReading"
 							],
