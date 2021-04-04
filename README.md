@@ -10,3 +10,6 @@ https://ourcodeworld.com/articles/read/977/how-to-deploy-a-node-js-application-o
 
 'Fun' with firewall:
 https://www.cyberciti.biz/faq/how-to-open-firewall-port-on-ubuntu-linux-12-04-14-04-lts/
+
+MongoDB port for Compass connection:
+https://jasonwatmore.com/post/2020/02/05/connect-to-remote-mongodb-on-aws-ec2-simply-and-securely-via-ssh-tunnel
