@@ -4,7 +4,9 @@ module.exports = function(app) {
 
   // dailyReadings Routes
   app.route('/dailyReading')
-    .post(dailyReadings.create_a_reading);
+    .post(dailyReadings.create_a_reading)
+    .put(dailyReadings.update_a_reading)
+    .delete(dailyReadings.delete_a_reading);
 
   app.route('/dailyReadings')
     .get(dailyReadings.list_all_readings)
@@ -12,7 +14,5 @@ module.exports = function(app) {
 
 
   app.route('/dailyReading/:year/:month/:day')
-    .get(dailyReadings.get_a_reading)
-    .put(dailyReadings.update_a_reading)
-    .delete(dailyReadings.delete_a_reading);
+    .get(dailyReadings.get_a_reading);
 };

@@ -30,15 +30,7 @@ exports.get_a_reading = function(req, res) {
         res.send(err);
       res.json(task);
     });
-    //res.json("Success");
 
-    /*
-    readings.forEach(reading => reading.save(function(err, task) {
-      if (err)
-        res.send(err);
-      res.json(task);
-    }));
-    */
   };
 
 /*
@@ -59,7 +51,7 @@ exports.create_a_reading = function(req, res) {
 };
 
 exports.update_a_reading = function(req, res) {
-  dailyReadings.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function(err, task) {
+  dailyReadings.findOneAndUpdate({_id: req.query.readingID}, req.body, {new: true}, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
