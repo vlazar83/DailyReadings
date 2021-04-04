@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "464e46bf-8eb0-4785-ae64-6feb96aa86da",
+		"name": "dailyReadings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getReading",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dailyReading/2021/04/03",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dailyReading",
+						"2021",
+						"04",
+						"03"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReadings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/dailyReadings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dailyReadings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postDailyReading",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dailyReading\": \"test data 2\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"04\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dailyReadings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dailyReadings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postDailyReadings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 2\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        },\n        {\n        \"dailyReading\": \"test data 3\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/dailyReadings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"dailyReadings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

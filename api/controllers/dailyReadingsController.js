@@ -17,6 +17,16 @@ exports.get_a_reading = function(req, res) {
       res.send(err);
     res.json(task);
   });
+};
+
+  exports.create_bulk_reading = function(req, res) {
+    var new_reading = new dailyReadings(req.body);
+    new_reading.save(function(err, task) {
+      if (err)
+        res.send(err);
+      res.json(task);
+    });
+  };
 
 /*
   dailyReadings.findById(req.params.year, function(err, task) {
@@ -25,8 +35,6 @@ exports.get_a_reading = function(req, res) {
     res.json(task);
   });
 */
-
-};
 
 exports.create_a_reading = function(req, res) {
   var new_reading = new dailyReadings(req.body);
