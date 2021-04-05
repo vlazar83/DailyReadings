@@ -7,10 +7,15 @@ var express = require('express'),
   mongoose = require('mongoose'),
   dailyReadings = require('./api/models/dailyReadingsModel'), //created model loading here
   bodyParser = require('body-parser');
-  
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger_output.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/dailyReadingsDB'); 
+
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

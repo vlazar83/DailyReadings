@@ -34,6 +34,11 @@ exports.create_a_reading = function(req, res) {
     return;
   } else {
 
+    /* #swagger.responses[200] = { 
+               schema: { $ref: "#/definitions/dailyReading" },
+               description: 'Usuário encontrado.' 
+              } */
+
     var new_reading = new dailyReadings(req.body);
     new_reading.save(function(err, task) {
       if (err)
