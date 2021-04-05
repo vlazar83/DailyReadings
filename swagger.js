@@ -38,6 +38,24 @@ const doc = {
             created_by: "Admin",
             created_date: "021-04-05T07:23:39.313Z",
             status: "saved"
+        },
+        dailyReadingsInput: [{
+            $ref: "#/definitions/dailyReadingInput"    
+             
+        }],
+        dailyReadingsOutput: [{
+            $ref: "#/definitions/dailyReading"    
+             
+        }],
+        dailyReadingInput: {
+            dailyReading: "test reading",
+            readingYear: "2021",
+            readingMonth: "04",
+            readingDay: "01",
+            created_by: "Admin"
+        },
+        dailyReadingWasDeleted: {
+            message: "Reading successfully deleted"
         }
     }
 }

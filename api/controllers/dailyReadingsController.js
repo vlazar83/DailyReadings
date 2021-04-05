@@ -20,6 +20,12 @@ exports.get_a_reading = function(req, res) {
 };
 
 exports.list_all_readings = function(req, res) {
+  /*  #swagger.tags = ['dailyReading']
+          #swagger.description = 'Endpoint to get the specific user.' */
+
+          /* #swagger.responses[200] = { 
+              schema: { "$ref": "#/definitions/dailyReading" },
+              description: "User registered successfully." } */
   dailyReadings.find({}, function(err, task) {
     if (err)
       res.send(err);

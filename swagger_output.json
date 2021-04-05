@@ -33,26 +33,63 @@
   "paths": {
     "/dailyReading": {
       "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to store a new dailyReading.",
+        "parameters": [
+          {
+            "name": "requestBody",
+            "in": "body",
+            "description": "Input data.",
+            "schema": {
+              "$ref": "#/definitions/dailyReadingInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReading"
+            },
+            "description": "Response after successful post."
+          }
+        }
       },
       "put": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to update the dailyReading.",
         "parameters": [
           {
             "name": "readingID",
             "in": "query",
             "type": "string"
+          },
+          {
+            "name": "requestBody",
+            "in": "body",
+            "description": "Input data.",
+            "schema": {
+              "$ref": "#/definitions/dailyReadingInput"
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReading"
+            },
+            "description": "Response after successful update."
+          }
+        }
       },
       "delete": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to delete one dailyReading.",
         "parameters": [
           {
             "name": "readingID",
@@ -60,27 +97,63 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReadingWasDeleted"
+            },
+            "description": "Response after successful delete."
+          }
+        }
       }
     },
     "/dailyReadings": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to get the dailyReadings.",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsOutput"
+            },
+            "description": "Returning data."
+          }
+        }
       },
       "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to store a couple of new dailyReadings.",
+        "parameters": [
+          {
+            "name": "requestBody",
+            "in": "body",
+            "description": "Input data.",
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsOutput"
+            },
+            "description": "Returning data."
+          }
+        }
       }
     },
     "/dailyReading/{year}/{month}/{day}": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to get the dailyReading.",
         "parameters": [
           {
             "name": "year",
@@ -101,7 +174,14 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReading"
+            },
+            "description": "Returning data."
+          }
+        }
       }
     }
   },
@@ -140,6 +220,52 @@
         "status": {
           "type": "string",
           "example": "saved"
+        }
+      }
+    },
+    "dailyReadingsInput": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/dailyReadingInput"
+      }
+    },
+    "dailyReadingsOutput": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/dailyReading"
+      }
+    },
+    "dailyReadingInput": {
+      "type": "object",
+      "properties": {
+        "dailyReading": {
+          "type": "string",
+          "example": "test reading"
+        },
+        "readingYear": {
+          "type": "string",
+          "example": "2021"
+        },
+        "readingMonth": {
+          "type": "string",
+          "example": "04"
+        },
+        "readingDay": {
+          "type": "string",
+          "example": "01"
+        },
+        "created_by": {
+          "type": "string",
+          "example": "Admin"
+        }
+      }
+    },
+    "dailyReadingWasDeleted": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Reading successfully deleted"
         }
       }
     }
