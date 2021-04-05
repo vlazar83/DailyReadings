@@ -1,3 +1,6 @@
+
+var dotenv = require('dotenv').config({path: __dirname + '/EnvironmentVariables.env'});
+
 var express = require('express'),
   app = express(),
   port = 50000,
