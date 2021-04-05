@@ -17,19 +17,19 @@ var dailyReadingsSchema = new Schema({
   readingDay: {
     type: String
   },
-  Created_date: {
+  created_date: {
     type: Date,
     default: Date.now
   },
-  Created_by: {
+  created_by: {
     type: String
   },
   status: {
     type: [{
       type: String,
-      enum: ['pending', 'ongoing', 'completed']
+      enum: ['saved', 'ongoing', 'checked']
     }],
-    default: ['pending']
+    default: ['saved']
   }
 });
 
