@@ -23,15 +23,29 @@ module.exports = function(app) {
     
         /* #swagger.responses[200] = { 
                    schema: { $ref: "#/definitions/dailyReading" },
-                   description: 'Response after successful post.'  } */
+                   description: 'Response after successful post.'  }  */
     
-        var new_reading = new dailyReadings(req.body);
-        new_reading.save(function(err, task) {
-          if (err)
-            res.send(err);
-          res.json(task);
-        });
-    
+        const isItDoneYet = dailyReadings.exists({ readingYear: req.body.readingYear, readingMonth: req.body.readingMonth, readingDay: req.body.readingDay });
+
+        isItDoneYet.then((result) => {
+          
+          if(!result){
+            var new_reading = new dailyReadings(req.body);
+
+            new_reading.save(function(err, task) {
+              if (err)
+                res.send(err);
+              res.json(task);
+            });
+
+          } else {
+            res.json('The reading for this day already exists! No DB operation is performed.');
+          }
+
+        }).catch((error) => {
+            console.log("Error", error);
+        })
+        
       }
     });
 
