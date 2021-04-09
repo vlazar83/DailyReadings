@@ -65,7 +65,10 @@ function saveMultipleReadings(arrayOfReadings, res){
                 res.json(task);
               });
         } else {
-            res.status(400).send('Saving is not possible because an element was found which is already saved for the given day.The index of the first duplicate element is :'+indexOfFirstDuplicateElement.toString());
+            var responseString = "{ \"message\" : \"Saving is not possible because an element was found which is already saved for the given day.The index of the first duplicate element is : " + indexOfFirstDuplicateElement.toString() + "\"}";
+            var obj = JSON.parse(JSON.stringify(responseString));
+            res.setHeader("Content-Type", "application/json");
+            res.status(400).send(obj);
         }
 
       })
