@@ -117,12 +117,8 @@ module.exports = function(app) {
         res.json('Invalid / missing API KEY');
         return;
       } else {
-    
-        var new_readings = Array.from(req.body.readings);
-    
-        new_readings.forEach((reading) => {
-          utils.checkIfExists(reading.readingYear, reading.readingMonth, reading.readingDay, reading, utils.callbackForSave);
-        });
+
+        utils.saveMultipleReadings(Array.from(req.body.readings), res);
     
       }
     });
