@@ -1,7 +1,7 @@
 # DailyReadings
 REST API created in node js and express to provide dailyReadings
 
-# Used sources o setup
+# Used sources to setup
 REST-example:
 https://www.codementor.io/@olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd
 

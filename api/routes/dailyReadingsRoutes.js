@@ -120,13 +120,8 @@ module.exports = function(app) {
     
         var new_readings = Array.from(req.body.readings);
     
-        let readings = [];
-        new_readings.forEach((reading) => readings.push(new dailyReadings(reading)));
-    
-        dailyReadings.insertMany(readings,function(err, task) {
-          if (err)
-            res.send(err);
-          res.json(task);
+        new_readings.forEach((reading) => {
+          utils.checkIfExists(reading.readingYear, reading.readingMonth, reading.readingDay, reading, utils.callbackForSave);
         });
     
       }

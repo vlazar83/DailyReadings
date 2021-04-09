@@ -27,4 +27,33 @@ function checkIfExistsAndSave(readingYear, readingMonth, readingDay, req, res) {
       })
 }
 
+function storeDailyReadingInDB(reading){
+
+    console.log('Storing in DB..');
+
+    var new_reading = new dailyReadings(reading);
+
+    new_reading.save(function(err, task) {
+          
+    });
+
+  }
+
+function callbackForSave(readingExists, reading){
+
+    console.log(readingExists);
+
+    if(!readingExists) storeDailyReadingInDB(reading);   // if the reading does not we save it into DB
+
+  }
+
+function checkIfExists(readingYear, readingMonth, readingDay, reading, callbackFunction){
+
+    const exists = dailyReadings.exists({ readingYear: readingYear, readingMonth: readingMonth, readingDay: readingDay }, function(err, res) {
+        callbackFunction(res, reading);
+      });
+}
+
+module.exports.callbackForSave = callbackForSave;
+module.exports.checkIfExists = checkIfExists;
 module.exports.checkIfExistsAndSave = checkIfExistsAndSave;
