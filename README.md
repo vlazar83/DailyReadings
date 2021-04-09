@@ -13,3 +13,7 @@ https://www.cyberciti.biz/faq/how-to-open-firewall-port-on-ubuntu-linux-12-04-14
 
 MongoDB port for Compass connection:
 https://jasonwatmore.com/post/2020/02/05/connect-to-remote-mongodb-on-aws-ec2-simply-and-securely-via-ssh-tunnel
+
+Swagger:
+https://www.npmjs.com/package/swagger-ui-express
+https://www.npmjs.com/package/swagger-autogen

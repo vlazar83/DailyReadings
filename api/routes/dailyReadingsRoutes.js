@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  dailyReadings = mongoose.model('dailyReadings');
+  dailyReadings = mongoose.model('dailyReadings'),
+  utils = require('../utils/utils.js')
 
 module.exports = function(app) {
 
@@ -21,31 +22,12 @@ module.exports = function(app) {
         return;
       } else {
     
+        utils.checkIfExistsAndSave(req.body.readingYear, req.body.readingMonth, req.body.readingDay, req, res);
+
         /* #swagger.responses[200] = { 
                    schema: { $ref: "#/definitions/dailyReading" },
                    description: 'Response after successful post.'  }  */
-    
-        const isItDoneYet = dailyReadings.exists({ readingYear: req.body.readingYear, readingMonth: req.body.readingMonth, readingDay: req.body.readingDay });
-
-        isItDoneYet.then((result) => {
-          
-          if(!result){
-            var new_reading = new dailyReadings(req.body);
-
-            new_reading.save(function(err, task) {
-              if (err)
-                res.send(err);
-              res.json(task);
-            });
-
-          } else {
-            res.json('The reading for this day already exists! No DB operation is performed.');
-          }
-
-        }).catch((error) => {
-            console.log("Error", error);
-        })
-        
+            
       }
     });
 
