@@ -20,7 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/', require('./api/routes/dailyReadingsRoutes'));
-app.use('/', require('./api/routes/dailyReadingsRoutesNoAuth'));
+
+// we do not use separate files anymore for routes, because swagger creation will not be complete
+//app.use('/', require('./api/routes/dailyReadingsRoutesNoAuth'));
 
 //var routes = require('./api/routes/dailyReadingsRoutes'); //importing routes
 //routes(app); //register the route
