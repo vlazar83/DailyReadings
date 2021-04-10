@@ -11,10 +11,9 @@ function checkIfExistsAndSave(readingYear, readingMonth, readingDay, req, res) {
     ready.then((result) => {
           
         if(!result){
-          //only keyUsers are allowed to post, therefore the created_by always has to be set to 'keyUser'
-          var modifiedBody = req.body;
-          modifiedBody.created_by = "keyUser";
-          var new_reading = new dailyReadings(modifiedBody);
+          //only keyUsers are allowed to post, therefore the created_by always has to be set to "keyUser". Also the status can only be "saved"
+          var new_reading = changeUser(req.body, "keyUser");
+          new_reading = changeStatus(req.body, "saved");
 
           new_reading.save(function(err, task) {
             if (err)
@@ -42,8 +41,9 @@ function saveMultipleReadings(arrayOfReadings, res){
 
     const promises = [];
 
-    //only keyUsers are allowed to post, therefore the created_by always has to be set to 'keyUser'
-    arrayOfReadings = changeUser(arrayOfReadings, "keyUser");
+    //only keyUsers are allowed to post, therefore the created_by always has to be set to 'keyUser'. Also the status can only be "saved"
+    arrayOfReadings = changeUserInArray(arrayOfReadings, "keyUser");
+    arrayOfReadings = changeStatusInArray(arrayOfReadings, "saved");
 
     arrayOfReadings.forEach((reading) => {
         readings.push(new dailyReadings(reading));
@@ -96,13 +96,42 @@ function deleteReading(readingID, res){
 
 }
 
-function changeUser(arrayOfReadings, newUser){
+function changeUser(reading, newUser){
+
+  var modifiedBody = reading;
+  modifiedBody.created_by = newUser;
+  var new_reading = new dailyReadings(modifiedBody);
+  return new_reading;
+}
+
+function changeUserInArray(arrayOfReadings, newUser){
 
   var newArray = [];
 
   arrayOfReadings.forEach((reading) => {
     var modifiedBody = reading;
     modifiedBody.created_by = newUser;
+    newArray.push(modifiedBody);
+  });
+
+  return newArray;
+}
+
+function changeStatus(reading, newStatus){
+
+  var modifiedBody = reading;
+  modifiedBody.status = newStatus;
+  var new_reading = new dailyReadings(modifiedBody);
+  return new_reading;
+}
+
+function changeStatusInArray(arrayOfReadings, newStatus){
+
+  var newArray = [];
+
+  arrayOfReadings.forEach((reading) => {
+    var modifiedBody = reading;
+    modifiedBody.status = newStatus;
     newArray.push(modifiedBody);
   });
 
