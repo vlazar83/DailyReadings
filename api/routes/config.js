@@ -8,9 +8,8 @@ module.exports = {
             admin: process.env.ADMIN_PASSWORD
         } 
     },
-    allUsers: {
+    keyUsers: {
         users: {
-            admin: process.env.ADMIN_PASSWORD,
             keyUser: process.env.KEY_USER_PASSWORD
         } 
     }

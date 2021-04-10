@@ -8,13 +8,13 @@ var mongoose = require('mongoose'),
 
 // 2 configs are used. allUsers can execute POST, but only Admin can execute PUT and DELETE
 const adminAuthConfig = require("./config.js").adminUsers;
-const allUsersAuthConfig = require("./config.js").allUsers;
+const keyUsersAuthConfig = require("./config.js").keyUsers;
 const jsonAdminAuthonfig = JSON.parse(JSON.stringify(adminAuthConfig))
-const jsonAllUsersAuthonfig = JSON.parse(JSON.stringify(allUsersAuthConfig))
+const jsonKeyUsersAuthonfig = JSON.parse(JSON.stringify(keyUsersAuthConfig))
 
 const basicAuth = require('express-basic-auth');
 
-router.post('/dailyReading',basicAuth(jsonAllUsersAuthonfig),(req, res) => {
+router.post('/dailyReading',basicAuth(jsonKeyUsersAuthonfig),(req, res) => {
 
       /*  #swagger.tags = ['dailyReadings']
           #swagger.description = 'Endpoint to store a new dailyReading.' */
@@ -86,7 +86,7 @@ router.delete('/dailyReading',basicAuth(jsonAdminAuthonfig),(req, res) => {
 
 });
 
-router.post('/dailyReadings',basicAuth(jsonAllUsersAuthonfig),(req, res) => {
+router.post('/dailyReadings',basicAuth(jsonKeyUsersAuthonfig),(req, res) => {
 
     /*  #swagger.tags = ['dailyReadings']
         #swagger.description = 'Endpoint to store a couple of new dailyReadings.' */
