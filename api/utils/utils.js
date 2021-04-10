@@ -78,6 +78,19 @@ function saveMultipleReadings(arrayOfReadings, res){
 
 }
 
+function deleteReading(readingID, res){
+
+  dailyReadings.findByIdAndDelete(readingID, (err) => {
+    if (err) {
+      res.json({ message: 'Reading deletion failed, error:', err });
+    } else {
+        res.json({ message: `Deleted dailyReading with ID: ${readingID} successfully` });
+    }
+  });
+
+}
+
+module.exports.deleteReading = deleteReading;
 module.exports.saveMultipleReadings = saveMultipleReadings;
 module.exports.checkIfExists = checkIfExists;
 module.exports.checkIfExistsAndSave = checkIfExistsAndSave;

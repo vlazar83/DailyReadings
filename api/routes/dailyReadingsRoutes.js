@@ -72,14 +72,8 @@ module.exports = function(app) {
         return;
       } else {
     
-        dailyReadings.remove({
-          _id: req.query.readingID
-        }, function(err, task) {
-          if (err)
-            res.send(err);
-          res.json({ message: 'Reading successfully deleted' });
-        });
-    
+        utils.deleteReading(req.query.readingID, res);
+
       }
     
     });
