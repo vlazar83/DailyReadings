@@ -16,18 +16,21 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/dailyReadingsDB'); 
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use('/', require('./api/routes/dailyReadingsRoutes'));
+app.use('/', require('./api/routes/dailyReadingsRoutesNoAuth'));
 
-var routes = require('./api/routes/dailyReadingsRoutes'); //importing routes
-routes(app); //register the route
+//var routes = require('./api/routes/dailyReadingsRoutes'); //importing routes
+//routes(app); //register the route
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
+
+//var routesNoAuth = require('./api/routes/dailyReadingsRoutesNoAuth'); //importing routes
+//routesNoAuth(app); //register the route
 
 app.listen(port);
 
