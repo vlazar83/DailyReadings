@@ -56,7 +56,16 @@ const doc = {
         },
         dailyReadingWasDeleted: {
             message: "Reading successfully deleted"
+        },
+        dailyReadingsMassUpdateInput: {
+            status: "checked"
+        },
+        dailyReadingsMassUpdateOutput: {
+            message: "dailyReadings update executed"
         }
+
+
+
     }
 }
 

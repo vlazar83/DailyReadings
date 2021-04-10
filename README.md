@@ -16,4 +16,7 @@ https://jasonwatmore.com/post/2020/02/05/connect-to-remote-mongodb-on-aws-ec2-si
 
 Swagger:
 https://www.npmjs.com/package/swagger-ui-express
+
 https://www.npmjs.com/package/swagger-autogen
+
+https://medium.com/swlh/automatic-api-documentation-in-node-js-using-swagger-dd1ab3c78284

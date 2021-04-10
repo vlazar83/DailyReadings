@@ -95,6 +95,27 @@
             "name": "readingID",
             "in": "query",
             "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "readingYear": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "readingMonth": {
+                  "type": "string",
+                  "example": "any"
+                },
+                "readingDay": {
+                  "type": "string",
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -108,21 +129,6 @@
       }
     },
     "/dailyReadings": {
-      "get": {
-        "tags": [
-          "dailyReadings"
-        ],
-        "description": "Endpoint to get the dailyReadings.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/dailyReadingsOutput"
-            },
-            "description": "Returning data."
-          }
-        }
-      },
       "post": {
         "tags": [
           "dailyReadings"
@@ -146,38 +152,26 @@
             "description": "Returning data."
           }
         }
-      }
-    },
-    "/dailyReading/{year}/{month}/{day}": {
-      "get": {
+      },
+      "patch": {
         "tags": [
           "dailyReadings"
         ],
-        "description": "Endpoint to get the dailyReading.",
+        "description": "Endpoint to update a couple of dailyReadings.",
         "parameters": [
           {
-            "name": "year",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "month",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "day",
-            "in": "path",
-            "required": true,
-            "type": "string"
+            "name": "requestBody",
+            "in": "body",
+            "description": "Input data.",
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsMassUpdateInput"
+            }
           }
         ],
         "responses": {
           "200": {
             "schema": {
-              "$ref": "#/definitions/dailyReading"
+              "$ref": "#/definitions/dailyReadingsMassUpdateOutput"
             },
             "description": "Returning data."
           }
@@ -266,6 +260,24 @@
         "message": {
           "type": "string",
           "example": "Reading successfully deleted"
+        }
+      }
+    },
+    "dailyReadingsMassUpdateInput": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "checked"
+        }
+      }
+    },
+    "dailyReadingsMassUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "dailyReadings update executed"
         }
       }
     }

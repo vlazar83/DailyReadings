@@ -110,4 +110,28 @@ router.post('/dailyReadings',basicAuth(jsonKeyUsersAuthonfig),(req, res) => {
     }
 });
 
+router.patch('/dailyReadings',basicAuth(jsonAdminAuthonfig),(req, res) => {
+
+  /*  #swagger.tags = ['dailyReadings']
+      #swagger.description = 'Endpoint to update a couple of dailyReadings.' */
+
+  /*  #swagger.parameters['requestBody'] = {
+            in: 'body',
+            description: "Input data.",
+            schema: { $ref: "#/definitions/dailyReadingsMassUpdateInput" } } */
+  
+    /* #swagger.responses[200] = { 
+              schema: { "$ref": "#/definitions/dailyReadingsMassUpdateOutput" },
+              description: "Returning data." } */
+
+  if(process.env.API_KEY != req.headers.api_key){
+    res.json('Invalid / missing API KEY');
+    return;
+  } else {
+
+    utils.saveMultipleReadings(Array.from(req.body.readings), res);
+
+  }
+});
+
 module.exports = router;
