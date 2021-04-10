@@ -29,9 +29,6 @@ app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-//var routesNoAuth = require('./api/routes/dailyReadingsRoutesNoAuth'); //importing routes
-//routesNoAuth(app); //register the route
-
 app.listen(port);
 
 

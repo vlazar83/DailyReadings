@@ -6,14 +6,15 @@ var mongoose = require('mongoose'),
   dailyReadings = mongoose.model('dailyReadings'),
   utils = require('../utils/utils.js')
 
+// 2 configs are used. allUsers can execute POST, but only Admin can execute PUT and DELETE
+const adminAuthConfig = require("./config.js").adminUsers;
+const allUsersAuthConfig = require("./config.js").allUsers;
+const jsonAdminAuthonfig = JSON.parse(JSON.stringify(adminAuthConfig))
+const jsonAllUsersAuthonfig = JSON.parse(JSON.stringify(allUsersAuthConfig))
+
 const basicAuth = require('express-basic-auth');
 
-router.post('/dailyReading',basicAuth({
-      users: {
-        'admin': 'SuperSecret83',
-        'keyUser': 'KeyToUpdate2021'
-      }
-    }),(req, res) => {
+router.post('/dailyReading',basicAuth(jsonAllUsersAuthonfig),(req, res) => {
 
       /*  #swagger.tags = ['dailyReadings']
           #swagger.description = 'Endpoint to store a new dailyReading.' */
@@ -38,12 +39,7 @@ router.post('/dailyReading',basicAuth({
       }
 });
 
-router.put('/dailyReading',basicAuth({
-    users: {
-      'admin': 'SuperSecret83',
-      'keyUser': 'KeyToUpdate2021'
-    }
-  }),(req, res) => {
+router.put('/dailyReading',basicAuth(jsonAdminAuthonfig),(req, res) => {
 
     /*  #swagger.tags = ['dailyReadings']
         #swagger.description = 'Endpoint to update the dailyReading.' */
@@ -70,12 +66,7 @@ router.put('/dailyReading',basicAuth({
     }
 });
 
-router.delete('/dailyReading',basicAuth({
-    users: {
-      'admin': 'SuperSecret83',
-      'keyUser': 'KeyToUpdate2021'
-    }
-  }),(req, res) => {
+router.delete('/dailyReading',basicAuth(jsonAdminAuthonfig),(req, res) => {
 
     /*  #swagger.tags = ['dailyReadings']
         #swagger.description = 'Endpoint to delete one dailyReading.' */      
@@ -95,12 +86,7 @@ router.delete('/dailyReading',basicAuth({
 
 });
 
-router.post('/dailyReadings',basicAuth({
-    users: {
-        'admin': 'SuperSecret83',
-        'keyUser': 'KeyToUpdate2021'
-    }
-  }),(req, res) => {
+router.post('/dailyReadings',basicAuth(jsonAllUsersAuthonfig),(req, res) => {
 
     /*  #swagger.tags = ['dailyReadings']
         #swagger.description = 'Endpoint to store a couple of new dailyReadings.' */
