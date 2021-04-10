@@ -562,7 +562,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading",
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReadings",
 							"protocol": "http",
 							"host": [
 								"ec2-3-16-163-87",
@@ -573,7 +573,7 @@
 							],
 							"port": "50000",
 							"path": [
-								"dailyReading"
+								"dailyReadings"
 							],
 							"query": [
 								{
