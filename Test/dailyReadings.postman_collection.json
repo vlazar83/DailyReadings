@@ -11,10 +11,13 @@
 				{
 					"name": "getReading",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:50000/dailyReading/2021/04/02",
+							"raw": "http://localhost:50000/dailyReading/2021/04/03",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,7 +27,7 @@
 								"dailyReading",
 								"2021",
 								"04",
-								"02"
+								"03"
 							]
 						}
 					},
@@ -52,11 +55,32 @@
 				{
 					"name": "postDailyReading",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{keyUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{keyUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dailyReading\": \"test data 2\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"04\"\n}",
+							"raw": "{\n    \"dailyReading\": \"test data 4\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"04\",\n    \"statuss\": [\n        \"checked\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,11 +104,32 @@
 				{
 					"name": "postDailyReadings",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{keyUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{keyUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 2\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        },\n        {\n        \"dailyReading\": \"test data 3\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        }\n    ]\n}",
+							"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 35\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"35\",\n        \"status\" : [\"checked\"]\n        },\n        {\n        \"dailyReading\": \"test data 36\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"36\",\n        \"created_by\": \"Admin\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -108,11 +153,32 @@
 				{
 					"name": "updateReading",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{adminUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{adminUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dailyReading\": \"test data 222\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"02\"\n}",
+							"raw": "{\n    \"dailyReading\": \"test data 222\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"02\",\n    \"status\": \"saved\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -120,7 +186,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:50000/dailyReading?readingID=6069864d6ecae3068241f770",
+							"raw": "http://localhost:50000/dailyReading?readingID=60718cea3a0d52027862471d",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -132,7 +198,63 @@
 							"query": [
 								{
 									"key": "readingID",
-									"value": "6069864d6ecae3068241f770"
+									"value": "60718cea3a0d52027862471d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "massStatusUpdate",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{adminUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{adminUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": [\"checked\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:50000/dailyReadings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReadings"
+							],
+							"query": [
+								{
+									"key": "readingID",
+									"value": "60718cea3a0d52027862471d",
+									"disabled": true
 								}
 							]
 						}
@@ -142,10 +264,31 @@
 				{
 					"name": "deleteReading",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{adminUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{adminUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:50000/dailyReading?readingID=6069864d6ecae3068241f770",
+							"raw": "http://localhost:50000/dailyReading?readingID=60707ef3ef723c103ae9ccdde",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -157,7 +300,7 @@
 							"query": [
 								{
 									"key": "readingID",
-									"value": "6069864d6ecae3068241f770"
+									"value": "60707ef3ef723c103ae9ccdde"
 								}
 							]
 						}
@@ -175,7 +318,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading/2021/04/02",
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading/2021/04/09",
 							"protocol": "http",
 							"host": [
 								"ec2-3-16-163-87",
@@ -189,7 +332,7 @@
 								"dailyReading",
 								"2021",
 								"04",
-								"02"
+								"09"
 							]
 						}
 					},
@@ -221,11 +364,32 @@
 				{
 					"name": "postDailyReading_AWS",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{keyUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{keyUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dailyReading\": \"test data\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"04\"\n}",
+							"raw": "{\n    \"dailyReading\": \"test data 9\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"09\",\n    \"Created_by\": \"Admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -253,8 +417,29 @@
 				{
 					"name": "postDailyReadings_AWS",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{keyUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{keyUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 2\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        },\n        {\n        \"dailyReading\": \"test data 3\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"02\"\n        }\n    ]\n}",
@@ -285,8 +470,29 @@
 				{
 					"name": "updateReading_AWS",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{adminUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{adminUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"dailyReading\": \"test data 222\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"02\"\n}",
@@ -321,12 +527,93 @@
 					"response": []
 				},
 				{
+					"name": "massStatusUpdate",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{adminUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{adminUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": [\"checked\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading",
+							"protocol": "http",
+							"host": [
+								"ec2-3-16-163-87",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"port": "50000",
+							"path": [
+								"dailyReading"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "deleteReading_AWS",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{adminUserPassword}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{adminUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "API_KEY",
+								"value": "{{API_KEY}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading?readingID=6069b9999c56bc0715aaf01a",
+							"raw": "http://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50000/dailyReading?readingID=606aea9fd360603243125ef0",
 							"protocol": "http",
 							"host": [
 								"ec2-3-16-163-87",
@@ -342,7 +629,7 @@
 							"query": [
 								{
 									"key": "readingID",
-									"value": "6069b9999c56bc0715aaf01a"
+									"value": "606aea9fd360603243125ef0"
 								}
 							]
 						}
