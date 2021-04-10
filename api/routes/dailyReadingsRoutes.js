@@ -129,7 +129,7 @@ router.patch('/dailyReadings',basicAuth(jsonAdminAuthonfig),(req, res) => {
     return;
   } else {
 
-    utils.saveMultipleReadings(Array.from(req.body.readings), res);
+    utils.massStatusUpdateInDB("checked", res);
 
   }
 });

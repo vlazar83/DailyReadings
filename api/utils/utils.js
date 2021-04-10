@@ -96,6 +96,16 @@ function deleteReading(readingID, res){
 
 }
 
+function massStatusUpdateInDB(newStatus, res){
+  dailyReadings.updateMany({},{$set:{status:[newStatus]}}, (err) => {
+    if (err) {
+      res.json({ message: 'Mass update failed, error:', err });
+    } else {
+        res.json({ message: "Mass update was successful" });
+    }
+  });
+}
+
 function changeUser(reading, newUser){
 
   var modifiedBody = reading;
@@ -138,6 +148,7 @@ function changeStatusInArray(arrayOfReadings, newStatus){
   return newArray;
 }
 
+module.exports.massStatusUpdateInDB = massStatusUpdateInDB;
 module.exports.deleteReading = deleteReading;
 module.exports.saveMultipleReadings = saveMultipleReadings;
 module.exports.checkIfExists = checkIfExists;
