@@ -31,6 +31,107 @@
     "application/json"
   ],
   "paths": {
+    "/dailyReadings": {
+      "get": {
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to get the dailyReadings. Returns readings which were checked by the admin before.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsOutput"
+            },
+            "description": "Returning data."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to store a couple of new dailyReadings.",
+        "parameters": [
+          {
+            "name": "requestBody",
+            "in": "body",
+            "description": "Input data.",
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsOutput"
+            },
+            "description": "Returning data."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to update a couple of dailyReadings.",
+        "parameters": [
+          {
+            "name": "requestBody",
+            "in": "body",
+            "description": "Input data.",
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsMassUpdateInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReadingsMassUpdateOutput"
+            },
+            "description": "Returning data."
+          }
+        }
+      }
+    },
+    "/dailyReading/{year}/{month}/{day}": {
+      "get": {
+        "tags": [
+          "dailyReadings"
+        ],
+        "description": "Endpoint to get the dailyReading.",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "month",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "day",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/dailyReading"
+            },
+            "description": "Returning data."
+          }
+        }
+      }
+    },
     "/dailyReading": {
       "post": {
         "tags": [
@@ -124,56 +225,6 @@
               "$ref": "#/definitions/dailyReadingWasDeleted"
             },
             "description": "Response after successful delete."
-          }
-        }
-      }
-    },
-    "/dailyReadings": {
-      "post": {
-        "tags": [
-          "dailyReadings"
-        ],
-        "description": "Endpoint to store a couple of new dailyReadings.",
-        "parameters": [
-          {
-            "name": "requestBody",
-            "in": "body",
-            "description": "Input data.",
-            "schema": {
-              "$ref": "#/definitions/dailyReadingsInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/dailyReadingsOutput"
-            },
-            "description": "Returning data."
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "dailyReadings"
-        ],
-        "description": "Endpoint to update a couple of dailyReadings.",
-        "parameters": [
-          {
-            "name": "requestBody",
-            "in": "body",
-            "description": "Input data.",
-            "schema": {
-              "$ref": "#/definitions/dailyReadingsMassUpdateInput"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/dailyReadingsMassUpdateOutput"
-            },
-            "description": "Returning data."
           }
         }
       }
