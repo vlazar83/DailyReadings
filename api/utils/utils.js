@@ -11,7 +11,10 @@ function checkIfExistsAndSave(readingYear, readingMonth, readingDay, req, res) {
     ready.then((result) => {
           
         if(!result){
-          var new_reading = new dailyReadings(req.body);
+          //only keyUsers are allowed to post, therefore the created_by always has to be set to 'keyUser'
+          var modifiedBody = req.body;
+          modifiedBody.created_by = "keyUser";
+          var new_reading = new dailyReadings(modifiedBody);
 
           new_reading.save(function(err, task) {
             if (err)
@@ -38,6 +41,9 @@ function saveMultipleReadings(arrayOfReadings, res){
     readings = [];
 
     const promises = [];
+
+    //only keyUsers are allowed to post, therefore the created_by always has to be set to 'keyUser'
+    arrayOfReadings = changeUser(arrayOfReadings, "keyUser");
 
     arrayOfReadings.forEach((reading) => {
         readings.push(new dailyReadings(reading));
@@ -88,6 +94,19 @@ function deleteReading(readingID, res){
     }
   });
 
+}
+
+function changeUser(arrayOfReadings, newUser){
+
+  var newArray = [];
+
+  arrayOfReadings.forEach((reading) => {
+    var modifiedBody = reading;
+    modifiedBody.created_by = newUser;
+    newArray.push(modifiedBody);
+  });
+
+  return newArray;
 }
 
 module.exports.deleteReading = deleteReading;
