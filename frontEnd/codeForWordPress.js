@@ -24,8 +24,8 @@ End of comment */
 
 function getDailyReading(){
   
-	var d = new Date();
-	var year = d.getFullYear().toString();
+    var d = new Date();
+    var year = d.getFullYear().toString();
     var month = (d.getMonth()+1).toString();
     var day = d.getDate().toString();
     
@@ -35,8 +35,6 @@ function getDailyReading(){
     
     var basePath = 'https://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50001/dailyReading/';
     var requestURL = basePath.concat(year, '/', month, '/', day);
-    
-    console.log(requestURL)
   
   jQuery(document).ready(function( $ ){
 
@@ -44,11 +42,8 @@ function getDailyReading(){
 
     promise.done(function(data) {
       NewP = document.createElement("p");
-      console.log(NewP);
       Text = document.createTextNode(data.dailyReading + "");
-      console.log(Text);
       NewP.appendChild(Text);
-      console.log(NewP);
       document.getElementById("section1").appendChild(NewP);
   		}); 
 	});
