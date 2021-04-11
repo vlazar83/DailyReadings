@@ -6,6 +6,8 @@ const key = fs.readFileSync('./keyStore/server-key.pem');
 const cert = fs.readFileSync('./keyStore/server-cert.pem');
 const https = require('https');
 
+var cors = require('cors');
+
 var express = require('express'),
   app = express(),
   port = 50001,
@@ -16,6 +18,9 @@ var express = require('express'),
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger_output.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// CORS support
+app.use(cors());
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
@@ -34,27 +39,6 @@ app.use('/', require('./api/routes/dailyReadingsRoutes'));
 
 app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
-});
-
-// CORS support
-// Add headers
-app.use(function (req, res, next) {
-
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'https://lebeny-lutheran.hu/');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
-  next();
 });
 
 //app.listen(port);
