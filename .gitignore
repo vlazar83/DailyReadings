@@ -3,6 +3,9 @@
 
 keyStore/*
 
+#PyCharm IDE
+*.idea
+
 # Logs
 logs
 *.log
