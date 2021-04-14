@@ -5,6 +5,14 @@ keyStore/*
 
 #PyCharm IDE
 *.idea
+data/.DS_Store
+
+#Data used for input to python scripts
+data/*.txt
+data/*.csv
+data/*.json
+data/*.xlsx
+data/*.zip
 
 # Logs
 logs
