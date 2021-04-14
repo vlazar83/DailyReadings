@@ -17,8 +17,8 @@ def find_string(txt, str1):
 class dailyReading():
   def __init__(self, year, month, day, firstReading, firstReadingShort, firstReadingLink, secondReading, secondReadingShort, secondReadingLink):
     self.readingYear = year
-    self.readingmonth = month
-    self.readingday = day
+    self.readingMonth = month
+    self.readingDay = day
     self.firstReading = firstReading
     self.firstReadingShort = firstReadingShort
     self.firstReadingLink = firstReadingLink
@@ -63,4 +63,4 @@ with open('../dailyReadings.csv', encoding='utf-8') as csv_file:
     #    print(x.year, ".", x.month, ".", x.day, ". ", x.firstReading, "; ", x.firstReadingShort, "; ", x.firstReadingLink, "; ", x.secondReading, "; ", x.secondReadingShort, "; ", x.secondReadingLink, "; ")
 
 readingsJSONData = json.dumps(dailyReadings, indent=4, cls=readingEncoder, ensure_ascii=False).encode('utf8')
-print(readingsJSONData.decode())
+print("{\"readings\": " + readingsJSONData.decode() + "}")

@@ -4,10 +4,6 @@ var Schema = mongoose.Schema;
 
 
 var dailyReadingsSchema = new Schema({
-  dailyReading: {
-    type: String,
-    required: 'Kindly enter the content of the reading'
-  },
   readingYear: {
     type: String
   },
@@ -16,6 +12,30 @@ var dailyReadingsSchema = new Schema({
   },
   readingDay: {
     type: String
+  },
+  firstReading: {
+    type: String,
+    required: 'Kindly enter the content of the first reading'
+  },
+  firstReadingShort: {
+    type: String,
+    required: 'Kindly enter the short reference of the first reading'
+  },
+  firstReadingLink: {
+    type: String,
+    required: 'Kindly enter the link of the first reading'
+  },
+  secondReading: {
+    type: String,
+    required: 'Kindly enter the content of the second reading'
+  },
+  secondReadingShort: {
+    type: String,
+    required: 'Kindly enter the short reference of the second reading'
+  },
+  secondReadingLink: {
+    type: String,
+    required: 'Kindly enter the link of the second reading'
   },
   created_date: {
     type: Date,
