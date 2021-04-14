@@ -16,9 +16,9 @@ def find_string(txt, str1):
 
 class dailyReading():
   def __init__(self, year, month, day, firstReading, firstReadingShort, firstReadingLink, secondReading, secondReadingShort, secondReadingLink):
-    self.year = year
-    self.month = month
-    self.day = day
+    self.readingYear = year
+    self.readingmonth = month
+    self.readingday = day
     self.firstReading = firstReading
     self.firstReadingShort = firstReadingShort
     self.firstReadingLink = firstReadingLink
@@ -36,7 +36,7 @@ def getReading(txt):
 
 def getReadingLink(txt):
     startingPosition = txt.index("href='")+6
-    endingPosition = txt.index("'>")-2
+    endingPosition = txt.index("'>")
     return txt[startingPosition: endingPosition]
 
 def getReadingShort(txt):
