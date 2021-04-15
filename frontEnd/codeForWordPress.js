@@ -33,7 +33,8 @@ function getDailyReading(){
     month = month.padStart(2, '0');
     day = day.padStart(2, '0');
     
-    var basePath = 'https://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50001/dailyReading/';
+    //var basePath = 'https://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50001/dailyReading/';
+  	var basePath = 'https://dailyreadings.cloudns.asia:50001/dailyReading/';
     var requestURL = basePath.concat(year, '/', month, '/', day);
     
     console.log(requestURL)
