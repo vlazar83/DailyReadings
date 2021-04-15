@@ -2,8 +2,14 @@
 var dotenv = require('dotenv').config({path: __dirname + '/EnvironmentVariables.env'});
 
 const fs = require('fs');
-const key = fs.readFileSync('./keyStore/server-key.pem');
-const cert = fs.readFileSync('./keyStore/server-cert.pem');
+//localhost:
+//const key = fs.readFileSync('./keyStore/server-key.pem');
+//const cert = fs.readFileSync('./keyStore/server-cert.pem');
+
+//AWS server:
+const key = fs.readFileSync('/etc/letsencrypt/live/dailyreadings.cloudns.asia/privkey.pem');
+const cert = fs.readFileSync('/etc/letsencrypt/live/dailyreadings.cloudns.asia/fullchain.pem');
+
 const https = require('https');
 
 var cors = require('cors');
