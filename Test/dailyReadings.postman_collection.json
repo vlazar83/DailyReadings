@@ -313,45 +313,41 @@
 			"name": "AWS",
 			"item": [
 				{
-					"name": "getReading_AWS",
+					"name": "getReading_AWS_alternative_DNS",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50001/dailyReading/2021/04/10",
+							"raw": "https://dailyreadings.cloudns.asia:50001/dailyReading/2021/04/14",
 							"protocol": "https",
 							"host": [
-								"ec2-3-16-163-87",
-								"us-east-2",
-								"compute",
-								"amazonaws",
-								"com"
+								"dailyreadings",
+								"cloudns",
+								"asia"
 							],
 							"port": "50001",
 							"path": [
 								"dailyReading",
 								"2021",
 								"04",
-								"10"
+								"14"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "getReadings_AWS",
+					"name": "getReadings_AWS_alternative_DNS",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://ec2-3-16-163-87.us-east-2.compute.amazonaws.com:50001/dailyReadings",
+							"raw": "https://dailyreadings.cloudns.asia:50001/dailyReadings",
 							"protocol": "https",
 							"host": [
-								"ec2-3-16-163-87",
-								"us-east-2",
-								"compute",
-								"amazonaws",
-								"com"
+								"dailyreadings",
+								"cloudns",
+								"asia"
 							],
 							"port": "50001",
 							"path": [
@@ -389,7 +385,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dailyReading\": \"test data 11\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"04\",\n    \"readingDay\": \"11\",\n    \"Created_by\": \"Admin\"\n}",
+							"raw": "{\n    \"dailyReading\": \"test data 13\",\n    \"readingYear\": \"2021\",\n    \"readingMonth\": \"05\",\n    \"readingDay\": \"13\",\n    \"Created_by\": \"Admin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -442,7 +438,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"readings\": [\n        {\n        \"dailyReading\": \"test data 11\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"11\"\n        },\n        {\n        \"dailyReading\": \"test data 12\",\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"04\",\n        \"readingDay\": \"12\"\n        }\n    ]\n}",
+							"raw": "{\"readings\": [\n    {\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"09\",\n        \"readingDay\": \"01\",\n        \"firstReading\": \"De én hozzád imádkozom, Uram, a kegyelem idején, Istenem. Nagy szeretettel hallgass meg, hűségesen segíts meg\",\n        \"firstReadingShort\": \"Zsolt 69,14\",\n        \"firstReadingLink\": \"https://szentiras.hu/RUF/Zsolt69,14\",\n        \"secondReading\": \"Jézus mondja: Amit csak kértek az Atyától az én nevemben, megadja nektek\",\n        \"secondReadingShort\": \"Jn 16,23b\",\n        \"secondReadingLink\": \"https://szentiras.hu/RUF/Jn16,23b\"\n    },\n    {\n        \"readingYear\": \"2021\",\n        \"readingMonth\": \"09\",\n        \"readingDay\": \"02\",\n        \"firstReading\": \"Azt az embert, aki féli az Urat, oktatja ő, hogy melyik utat válassza\",\n        \"firstReadingShort\": \"Zsolt 25,12\",\n        \"firstReadingLink\": \"https://szentiras.hu/RUF/Zsolt25,12\",\n        \"secondReading\": \"Pál írja: És imádkozom azért, hogy a szeretet egyre inkább gazdagodjék bennetek ismerettel és igazi megértéssel..\",\n        \"secondReadingShort\": \"Fil 1,9\",\n        \"secondReadingLink\": \"https://szentiras.hu/RUF/Fil1,9\"\n    }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
