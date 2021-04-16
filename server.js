@@ -1,14 +1,20 @@
 
 var dotenv = require('dotenv').config({path: __dirname + '/EnvironmentVariables.env'});
 
+var os = require("os");
+var hostname = os.hostname();
 const fs = require('fs');
-//localhost:
-//const key = fs.readFileSync('./keyStore/server-key.pem');
-//const cert = fs.readFileSync('./keyStore/server-cert.pem');
+var key, cert;
 
-//AWS server:
-const key = fs.readFileSync('/etc/letsencrypt/live/dailyreadings.cloudns.asia/privkey.pem');
-const cert = fs.readFileSync('/etc/letsencrypt/live/dailyreadings.cloudns.asia/fullchain.pem');
+if(hostname.substring(0, 3) == "ip-"){
+  //AWS server:
+  key = fs.readFileSync('/etc/letsencrypt/live/dailyreadings.cloudns.asia/privkey.pem');
+  cert = fs.readFileSync('/etc/letsencrypt/live/dailyreadings.cloudns.asia/fullchain.pem');
+} else {
+  //localhost:
+  key = fs.readFileSync('./keyStore/server-key.pem');
+  cert = fs.readFileSync('./keyStore/server-cert.pem');
+}
 
 const https = require('https');
 
