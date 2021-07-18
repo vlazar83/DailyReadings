@@ -37,9 +37,9 @@ To make HTTPS work, i used these steps:
  - use the generated certificate and key in server.js
 
 To create new certificate use the following commands: 
-sudo certbot certificates
-sudo certbot delete
-sudo certbot certonly --manual --preferred-challenges dns
-add TXT record to dns 
-sudo pm2 list
-sudo pm2 restart server
+ - sudo certbot certificates
+ - sudo certbot delete
+ - sudo certbot certonly --manual --preferred-challenges dns
+ - add TXT record to dns 
+ - sudo pm2 list
+ - sudo pm2 restart server
