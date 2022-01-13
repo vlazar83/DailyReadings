@@ -1,147 +1,149 @@
-'use strict';
+"use strict";
 
-var router = require('express').Router();
+var router = require("express").Router();
 
-var mongoose = require('mongoose'),
-  dailyReadings = mongoose.model('dailyReadings'),
-  utils = require('../utils/utils.js')
+var mongoose = require("mongoose"),
+  dailyReadings = mongoose.model("dailyReadings"),
+  utils = require("../utils/utils.js");
 
 // 2 configs are used. allUsers can execute POST, but only Admin can execute PUT and DELETE
 const adminAuthConfig = require("./config.js").adminUsers;
 const keyUsersAuthConfig = require("./config.js").keyUsers;
-const jsonAdminAuthonfig = JSON.parse(JSON.stringify(adminAuthConfig))
-const jsonKeyUsersAuthonfig = JSON.parse(JSON.stringify(keyUsersAuthConfig))
+const jsonAdminAuthonfig = JSON.parse(JSON.stringify(adminAuthConfig));
+const jsonKeyUsersAuthonfig = JSON.parse(JSON.stringify(keyUsersAuthConfig));
 
-const basicAuth = require('express-basic-auth');
+const basicAuth = require("express-basic-auth");
 
-router.get('/dailyReadings',(req, res) => {
+router.get("/dailyReadings", (req, res) => {
   /*  #swagger.tags = ['dailyReadings']
       #swagger.description = 'Endpoint to get the dailyReadings. Returns readings which were checked by the admin before.' */
 
-      /* #swagger.responses[200] = { 
+  /* #swagger.responses[200] = { 
           schema: { "$ref": "#/definitions/dailyReadingsOutput" },
           description: "Returning data." } */
 
-  dailyReadings.find({status: ["checked"]}, function(err, task) {
-    if (err)
-      res.send(err);
+  console.log("I was here");
+  dailyReadings.find({ status: ["checked"] }, function (err, task) {
+    if (err) res.send(err);
     res.json(task);
   });
 });
 
-router.get('/dailyReading/:year/:month/:day', (req, res) => {
+router.get("/dailyReading/:year/:month/:day", (req, res) => {
   /*  #swagger.tags = ['dailyReadings']
         #swagger.description = 'Endpoint to get the dailyReading.' */
-  
-    /* #swagger.responses[200] = { 
+
+  /* #swagger.responses[200] = { 
             schema: { "$ref": "#/definitions/dailyReading" },
             description: "Returning data." } */
 
-  dailyReadings.findOne({ readingYear: req.params.year, readingMonth: req.params.month, readingDay: req.params.day },function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  })
+  dailyReadings.findOne(
+    {
+      readingYear: req.params.year,
+      readingMonth: req.params.month,
+      readingDay: req.params.day,
+    },
+    function (err, task) {
+      if (err) res.send(err);
+      res.json(task);
+    }
+  );
 });
 
-router.post('/dailyReading',basicAuth(jsonKeyUsersAuthonfig),(req, res) => {
-
-      /*  #swagger.tags = ['dailyReadings']
+router.post("/dailyReading", basicAuth(jsonKeyUsersAuthonfig), (req, res) => {
+  /*  #swagger.tags = ['dailyReadings']
           #swagger.description = 'Endpoint to store a new dailyReading.' */
 
-
-      /*  #swagger.parameters['requestBody'] = {
+  /*  #swagger.parameters['requestBody'] = {
                 in: 'body',
                 description: "Input data.",
                 schema: { $ref: "#/definitions/dailyReadingInput" } } */
 
-      if(process.env.API_KEY != req.headers.api_key){
-        res.json('Invalid / missing API KEY');
-        return;
-      } else {
+  if (process.env.API_KEY != req.headers.api_key) {
+    res.json("Invalid / missing API KEY");
+    return;
+  } else {
+    utils.checkIfExistsAndSave(
+      req.body.readingYear,
+      req.body.readingMonth,
+      req.body.readingDay,
+      req,
+      res
+    );
 
-        utils.checkIfExistsAndSave(req.body.readingYear, req.body.readingMonth, req.body.readingDay, req, res);
-
-        /* #swagger.responses[200] = { 
+    /* #swagger.responses[200] = { 
                     schema: { $ref: "#/definitions/dailyReading" },
                     description: 'Response after successful post.'  }  */
-            
-      }
+  }
 });
 
-router.put('/dailyReading',basicAuth(jsonAdminAuthonfig),(req, res) => {
-
-    /*  #swagger.tags = ['dailyReadings']
+router.put("/dailyReading", basicAuth(jsonAdminAuthonfig), (req, res) => {
+  /*  #swagger.tags = ['dailyReadings']
         #swagger.description = 'Endpoint to update the dailyReading.' */
-    
-    /*  #swagger.parameters['requestBody'] = {
+
+  /*  #swagger.parameters['requestBody'] = {
               in: 'body',
               description: "Input data.",
-              schema: { $ref: "#/definitions/dailyReadingInput" } } */     
+              schema: { $ref: "#/definitions/dailyReadingInput" } } */
 
-    /* #swagger.responses[200] = { 
+  /* #swagger.responses[200] = { 
           schema: { $ref: "#/definitions/dailyReading" },
-          description: 'Response after successful update.'  } */   
+          description: 'Response after successful update.'  } */
 
-    if(process.env.API_KEY != req.headers.api_key){
-      res.json('Invalid / missing API KEY');
-      return;
-    } else {
-
-      dailyReadings.findOneAndUpdate({_id: req.query.readingID}, req.body, {new: true}, function(err, task) {
-        if (err)
-          res.send(err);
+  if (process.env.API_KEY != req.headers.api_key) {
+    res.json("Invalid / missing API KEY");
+    return;
+  } else {
+    dailyReadings.findOneAndUpdate(
+      { _id: req.query.readingID },
+      req.body,
+      { new: true },
+      function (err, task) {
+        if (err) res.send(err);
         res.json(task);
-      });
-    }
+      }
+    );
+  }
 });
 
-router.delete('/dailyReading',basicAuth(jsonAdminAuthonfig),(req, res) => {
+router.delete("/dailyReading", basicAuth(jsonAdminAuthonfig), (req, res) => {
+  /*  #swagger.tags = ['dailyReadings']
+        #swagger.description = 'Endpoint to delete one dailyReading.' */
 
-    /*  #swagger.tags = ['dailyReadings']
-        #swagger.description = 'Endpoint to delete one dailyReading.' */      
-    
-    /* #swagger.responses[200] = { 
+  /* #swagger.responses[200] = { 
           schema: { $ref: "#/definitions/dailyReadingWasDeleted" },
-          description: 'Response after successful delete.'  } */  
+          description: 'Response after successful delete.'  } */
 
-    if(process.env.API_KEY != req.headers.api_key){
-      res.json('Invalid / missing API KEY');
-      return;
-    } else {
-
-      utils.deleteReading(req.query.readingID, res);
-
-    }
-
+  if (process.env.API_KEY != req.headers.api_key) {
+    res.json("Invalid / missing API KEY");
+    return;
+  } else {
+    utils.deleteReading(req.query.readingID, res);
+  }
 });
 
-router.post('/dailyReadings',basicAuth(jsonKeyUsersAuthonfig),(req, res) => {
-
-    /*  #swagger.tags = ['dailyReadings']
+router.post("/dailyReadings", basicAuth(jsonKeyUsersAuthonfig), (req, res) => {
+  /*  #swagger.tags = ['dailyReadings']
         #swagger.description = 'Endpoint to store a couple of new dailyReadings.' */
 
-    /*  #swagger.parameters['requestBody'] = {
+  /*  #swagger.parameters['requestBody'] = {
               in: 'body',
               description: "Input data.",
               schema: { $ref: "#/definitions/dailyReadingsInput" } } */
-    
-      /* #swagger.responses[200] = { 
+
+  /* #swagger.responses[200] = { 
                 schema: { "$ref": "#/definitions/dailyReadingsOutput" },
                 description: "Returning data." } */
 
-    if(process.env.API_KEY != req.headers.api_key){
-      res.json('Invalid / missing API KEY');
-      return;
-    } else {
-
-      utils.saveMultipleReadings(Array.from(req.body.readings), res);
-
-    }
+  if (process.env.API_KEY != req.headers.api_key) {
+    res.json("Invalid / missing API KEY");
+    return;
+  } else {
+    utils.saveMultipleReadings(Array.from(req.body.readings), res);
+  }
 });
 
-router.patch('/dailyReadings',basicAuth(jsonAdminAuthonfig),(req, res) => {
-
+router.patch("/dailyReadings", basicAuth(jsonAdminAuthonfig), (req, res) => {
   /*  #swagger.tags = ['dailyReadings']
       #swagger.description = 'Endpoint to update a couple of dailyReadings.' */
 
@@ -149,18 +151,16 @@ router.patch('/dailyReadings',basicAuth(jsonAdminAuthonfig),(req, res) => {
             in: 'body',
             description: "Input data.",
             schema: { $ref: "#/definitions/dailyReadingsMassUpdateInput" } } */
-  
-    /* #swagger.responses[200] = { 
+
+  /* #swagger.responses[200] = { 
               schema: { "$ref": "#/definitions/dailyReadingsMassUpdateOutput" },
               description: "Returning data." } */
 
-  if(process.env.API_KEY != req.headers.api_key){
-    res.json('Invalid / missing API KEY');
+  if (process.env.API_KEY != req.headers.api_key) {
+    res.json("Invalid / missing API KEY");
     return;
   } else {
-
     utils.massStatusUpdateInDB("checked", res);
-
   }
 });
 
