@@ -7,21 +7,21 @@ var hostname = os.hostname();
 const fs = require("fs");
 var key, cert;
 
-if (hostname.substring(0, 3) == "ip-") {
-  //AWS server:
-  key = fs.readFileSync(
-    "/etc/letsencrypt/live/dailyreadings.cloudns.asia/privkey.pem"
-  );
-  cert = fs.readFileSync(
-    "/etc/letsencrypt/live/dailyreadings.cloudns.asia/fullchain.pem"
-  );
-} else {
-  //localhost:
-  key = fs.readFileSync("./keyStore/server-key.pem");
-  cert = fs.readFileSync("./keyStore/server-cert.pem");
-}
+// if (hostname.substring(0, 3) == "ip-") {
+//   //AWS server:
+//   key = fs.readFileSync(
+//     "/etc/letsencrypt/live/dailyreadings.cloudns.asia/privkey.pem"
+//   );
+//   cert = fs.readFileSync(
+//     "/etc/letsencrypt/live/dailyreadings.cloudns.asia/fullchain.pem"
+//   );
+// } else {
+//   //localhost:
+//   key = fs.readFileSync("./keyStore/server-key.pem");
+//   cert = fs.readFileSync("./keyStore/server-cert.pem");
+// }
 
-const https = require("https");
+const http = require("http");
 
 var cors = require("cors");
 
@@ -41,9 +41,9 @@ app.use(cors());
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost:27017/dailyReadingsDB');
-const connString = process.env.MONGODB_CONNSTRING;
-mongoose.connect(connString);
+mongoose.connect('mongodb://root:root@mongodb:27017/dailyReadingsDB?authSource=admin');
+// const connString = process.env.MONGODB_CONNSTRING;
+// mongoose.connect(connString);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -61,7 +61,7 @@ app.use(function (req, res) {
 });
 
 //app.listen(port);
-const server = https.createServer(
+const server = http.createServer(
   { key: key, cert: cert, secureProtocol: "TLSv1_2_method" },
   app
 );
